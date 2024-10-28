@@ -1,0 +1,34 @@
+plugins {
+    id 'org.springframework.boot' version '3.3.4' // Versión de Spring Boot
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(22)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+}
+
+bootJar {
+    archiveFileName = 'notification-service.jar' // Nombre del archivo JAR
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    mainClass = 'com.example.notificationservice.NotificationServiceApplication' // Cambia por el nombre completo de tu clase principal
+}
